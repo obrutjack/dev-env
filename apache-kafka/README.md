@@ -1,6 +1,6 @@
 -----
 
-### 在 Apple Silicon Mac 上設定 Apache Kafka 開發環境
+### 在 Apple Silicon Mac 上設定 Apache Kafka 開發與使用環境
 
 這是一份簡單明瞭的指南，引導你如何在搭載 **Apple Silicon 晶片**的 Mac 上，建立一個完整的 **Apache Kafka 開發環境**。
 
