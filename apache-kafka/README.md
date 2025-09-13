@@ -6,19 +6,19 @@
 
 -----
 
-### 1\. 準備開發工具
+### 1\. 準備開發工具與使用環境
 
 請先在你的 Mac 上安裝以下軟體：
 
-  * **[Visual Studio Code](https://code.visualstudio.com/#:~:text=Download,-for%20macOS)**
+  * **開發工具: [Visual Studio Code](https://code.visualstudio.com/#:~:text=Download,-for%20macOS)**
       * 這將會是我們主要的程式開發環境。
-  * **[OrbStack](https://orbstack.dev/download/stable/latest/arm64)**
+  * **使用環境: [OrbStack](https://orbstack.dev/download/stable/latest/arm64)**
       * OrbStack 是一個輕量且高效能的 Docker Desktop 替代品，非常適合在 Mac 上使用。
       * **提醒：** OrbStack 對於個人與開源專案免費，但商業用途需購買授權。
 
 -----
 
-### 2\. 安裝 VS Code 延伸套件
+### 2\. 於開發工具內安裝 VS Code 延伸套件
 
 啟動 Visual Studio Code 後，請安裝以下幾個重要的延伸套件：
 
@@ -26,7 +26,7 @@
     > 安裝後，你可以透過其內建的「Getting Started」教學來安裝 JDK。在 **"Get your runtime ready"** 區塊點選 **Install JDK**，並下載你需要的 JDK 版本。
     > **提醒：** Apache Kafka 建議使用 **JDK 17 或以上**的版本。
   * **[YAML Language Support](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)**
-  * **[Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)**
+    > 安裝後，可以方便於使用環境中閱讀 YAML 檔案的內容．
 
 -----
 
@@ -64,7 +64,7 @@ cd kafka
 
 -----
 
-### 5\. 啟動 Kafka 服務
+### 5\. 於 Container 環境使用 Kafka 服務
 
 請將你的 `docker-compose.yaml` 檔案放置到 `apache-kafka/dev-env` 目錄中，然後執行以下指令來啟動服務：
 
@@ -80,7 +80,7 @@ docker compose up -d
 
 -----
 
-### 6\. 開發與更新流程說明
+### 6\. 開發與使用環境更新流程說明
 
 #### 程式碼同步與 Volume 設定
 
@@ -97,11 +97,11 @@ volumes:
 1.  **啟動服務：** 第一次執行 `docker-compose up -d` 時，Docker 會根據 `docker-compose.yaml` 啟動容器，此時 Kafka 運行的是映像檔內建的程式碼。
 2.  **編譯程式碼：** 當你在 VS Code 中修改了 Kafka 原始碼，執行 `./gradlew jar` 會將你的新程式碼編譯成新的 `.jar` 檔案。
 3.  **檔案同步：** 由於 **Volume** 的設定，你的新 `.jar` 檔案會自動同步到容器中，覆蓋舊的檔案。
-4.  **重啟服務以生效：** 雖然檔案已同步，但運行的服務仍在舊程式碼上。你必須**重啟** Kafka 服務，它才會載入新的 `.jar` 檔案。
+4.  **重啟使用環境服務以生效：** 雖然檔案已同步，但運行的服務仍在舊程式碼上。你必須**重啟** Kafka 服務，它才會載入新的 `.jar` 檔案。
 
 -----
 
-### 7\. 重啟服務
+### 7\. 重啟使用環境服務
 
 在完成程式碼修改並重新編譯後，使用以下指令來重啟 **Kafka 容器**：
 
